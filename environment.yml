@@ -1,0 +1,9 @@
+name: pycones-demos
+channels:
+  - default
+dependencies:
+  - pip=23.1.2
+  - python=3.9
+  - pip:
+    - python-dotenv==1.0.0
+    - pyTelegramBotAPI==4.12.0
