@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# VSCode
+.vscode
+
+# Telegram
+.handler-saves
+
 # Distribution / packaging
 .Python
 build/
