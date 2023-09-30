@@ -25,4 +25,4 @@ def get_environment_variable(variable_name: str) -> str:
     return value
 
 if __name__ == '__main__':
-    connection_string = get_environment_variable("CONNECTION_STRING")
+    BOT_TOKEN = get_environment_variable("BOT_TOKEN")
