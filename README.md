@@ -113,5 +113,6 @@ This project is provided as-is with no warranty or guarantee of its performance 
 
 ## Relevant Links
 - https://core.telegram.org/bots
+- https://pypi.org/project/pyTelegramBotAPI/
 - https://github.com/eternnoir/pyTelegramBotAPI/tree/master
 - [PyConES talk](https://charlas.2023.es.pycon.org/pycones-2023/talk/7X3PPN/)
