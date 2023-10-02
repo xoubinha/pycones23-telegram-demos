@@ -17,7 +17,7 @@ bot = telebot.TeleBot(BOT_TOKEN)
 @bot.message_handler(commands=['start', 'hi'])
 def send_welcome(message: telebot.types.Message):
     """
-    Respond to the '/empezar' and '/hola' commands with a welcome message.
+    Respond to the '/start' and '/hi' commands with a welcome message.
 
     Args:
         message (telebot.types.Message): The message object representing the user's command.
