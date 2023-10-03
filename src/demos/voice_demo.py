@@ -109,7 +109,11 @@ def handle_transcription_instructions(message, transcription):
         message: The user's message object with the instructions.
         transcription (str): The text transcribed to be processed.
     """
-    user_instructions = message.text
+    if message.content_type == "voice":
+        audio_filepath = download_telegram_file(bot, message.voice.file_id)
+        user_instructions = transcribe_audio_with_openai(audio_filepath)
+    else:
+        user_instructions = message.text
     processed_text = process_text_with_custom_instructions(
         transcription, user_instructions)
     bot.reply_to(message, f"¡Aquí lo tienes!👇: \n{processed_text}")
