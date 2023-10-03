@@ -16,10 +16,35 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 conversations = {}
 
+
+def generate_conversation(model_name: str = "gpt-3.5-turbo", openai_api_key=OPENAI_API_KEY) -> ConversationChain:
+    chat = ChatOpenAI(model_name=model_name, openai_api_key=openai_api_key)
+    conversation = ConversationChain(llm=chat, verbose=True)
+    return conversation
+
+
+def conversate(id: str, conversations: dict, message: str) -> str:
+    if id in conversations:
+        conversation = conversations[id]
+    else:
+        conversation = generate_conversation()
+        conversations[id] = conversation
+    reply = conversation.run(message)
+    return reply
+
+
+def end_conversation(id: str, conversations: dict):
+    if id in conversations:
+        del conversations[id]
+        return True
+    else:
+        return False
+
+
 @bot.message_handler(commands=START_COMMANDS)
 def send_welcome(message: telebot.types.Message):
     """
-    Respond to the '/empezar' and '/hola' commands with a welcome message.
+    Respond to the '/start' and '/hi' commands with a welcome message.
 
     Args:
         message (telebot.types.Message): The message object representing the user's command.
@@ -37,14 +62,13 @@ def send_goodbye(message: telebot.types.Message):
         message (telebot.types.Message): The message object representing the user's command.
     """
     user_id = message.chat.id
-    if user_id in conversations:
-     del conversations[user_id]  
+    end_conversation(user_id, conversations)
     goodbye_message = "Chao, ¡nos vemos pronto! 😉"
     bot.reply_to(message, goodbye_message)
 
 
 @bot.message_handler(content_types=["text"])
-def process_openai_step(message: telebot.types.Message):
+def process_chat_step(message: telebot.types.Message):
     """
     Process the message and respond using OpenAI
 
@@ -55,15 +79,10 @@ def process_openai_step(message: telebot.types.Message):
     """
     try:
         user_id = message.chat.id
-        msg_text = message.text
+        message_text = message.text
 
-        if user_id not in conversations:
-            chat = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=OPENAI_API_KEY)            
-            conversations[user_id] =  ConversationChain(llm=chat)
-        conversation = conversations[user_id]
-
-        reply_message = conversation.run(msg_text)
-        msg = bot.reply_to(message, reply_message)
+        reply_text = conversate(user_id, conversations, message_text)
+        msg = bot.reply_to(message, reply_text)
 
     except Exception as e:
         bot.reply_to(message, 'Upsi, ha debido de haber algún problema')
