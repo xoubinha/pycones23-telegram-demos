@@ -24,10 +24,14 @@ This repository contains various demonstration projects related to the PyconEs t
 
 ### Project List
 
-1. **Basic Telegram Bot (Initial Demo)** - This demo serves as an introductory guide to building a basic Telegram bot. It lays the foundation for understanding how to create more advanced bots that leverage OpenAI models.  You will learn how to set up a bot, handle user interactions, and respond to messages using pyTelegramBotAPI Python library.
+1. **Basic Telegram Bot (Telebot Demo)** - This demo serves as an introductory guide to building a basic Telegram bot. It lays the foundation for understanding how to create more advanced bots that leverage OpenAI models.  You will learn how to set up a bot, handle user interactions, and respond to messages using pyTelegramBotAPI Python library.
+
+3. **Voice demo** - This demo serves to see how we can interact both with OpenAI GPT models and Whisper.
+
 ### Project Structure
 
-- `initial_demo.py`: The main Python script containing the bot's logic.
+- `telebot_demo.py`: The main Python script containing the bot's logic.
+- `voice_demo.py`: The main Python script containing the bot's logic that handles voice messages.
 
 
 ## Getting Started
@@ -70,11 +74,13 @@ In order to configure and run this project, you need to set up the following env
 
 ```bash
 BOT_TOKEN=<'your-telegram-bot-token'>
+OPENAI_API_KEY=<'open-ai-api-key'>
 ```
 
 #### Explanation of Environment Variables
 
 - **BOT_TOKEN**: The bot token of your bot.
+- **OPENAI_API_KEY**: The open AI API key.
 
 Make sure to replace the placeholder values with your actual configuration. It's essential to keep your environment variables secure. Do not share your .env file publicly or commit it to version control. To load these environment variables into your project, `python-dotenv` will be used. Please ensure you have the appropriate values set in your .env file before running the project to avoid any configuration-related issues.
 
@@ -116,3 +122,4 @@ This project is provided as-is with no warranty or guarantee of its performance 
 - https://pypi.org/project/pyTelegramBotAPI/
 - https://github.com/eternnoir/pyTelegramBotAPI/tree/master
 - [PyConES talk](https://charlas.2023.es.pycon.org/pycones-2023/talk/7X3PPN/)
+- https://api.python.langchain.com/en/latest/api_reference.html
