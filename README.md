@@ -26,11 +26,14 @@ This repository contains various demonstration projects related to the PyconEs t
 
 1. **Basic Telegram Bot (Telebot Demo)** - This demo serves as an introductory guide to building a basic Telegram bot. It lays the foundation for understanding how to create more advanced bots that leverage OpenAI models.  You will learn how to set up a bot, handle user interactions, and respond to messages using pyTelegramBotAPI Python library.
 
+2. **OpenAI demo** - This demo serves to see how we can build an intelligent model making use of OpenAI's GPT models and Langchain.
+
 3. **Voice demo** - This demo serves to see how we can interact both with OpenAI GPT models and Whisper.
 
 ### Project Structure
 
 - `telebot_demo.py`: The main Python script containing the bot's logic.
+- `openai_demo.py`: The main Python script containing the bot's logic that conversates using OpenAI
 - `voice_demo.py`: The main Python script containing the bot's logic that handles voice messages.
 
 
