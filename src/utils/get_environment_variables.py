@@ -26,3 +26,4 @@ def get_environment_variable(variable_name: str) -> str:
 
 if __name__ == '__main__':
     BOT_TOKEN = get_environment_variable("BOT_TOKEN")
+    OPENAI_API_KEY = get_environment_variable("OPENAI_API_KEY")

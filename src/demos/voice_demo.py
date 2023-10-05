@@ -3,24 +3,27 @@ from langchain.chains import ConversationChain
 from langchain.chat_models import ChatOpenAI
 import telebot
 from utils import get_environment_variable, download_telegram_file
+from utils.conversation_utils import conversate, end_conversation
 
 import openai
 
 
 START_COMMANDS = ["start", "hi"]
 END_COMMANDS = ["end", "bye"]
-
-conversations = {}
-
 BOT_TOKEN = get_environment_variable("BOT_TOKEN")
 OPENAI_API_KEY = get_environment_variable("OPENAI_API_KEY")
 
+conversations = {}
+prompts = {} 
+
 bot = telebot.TeleBot(BOT_TOKEN)
+
 
 def transcribe_audio_with_openai(audio_filepath, model="whisper-1"):
     with open(audio_filepath, "rb") as audio_file:
         transcript = openai.Audio.transcribe(model, audio_file)
     return transcript.to_dict()["text"]
+
 
 def process_text_with_custom_instructions(text: str, instructions: str) -> str:
     """
@@ -54,6 +57,9 @@ def send_welcome(message: telebot.types.Message):
     Args:
         message (telebot.types.Message): The message object representing the user's command.
     """
+    if len(message.text.split(" ")) > 1:
+        system_prompt = message.text.split(" ", 1)[1]
+        prompts[message.chat.id] = system_prompt
     welcome_message = "Hola, si has llegado hasta aquí es que ya soy un bot súper inteligente... ¡Ahora además puedo entender tus audios! 🤯. Envíame un mensaje"
     bot.reply_to(message, welcome_message)
 
@@ -66,6 +72,8 @@ def send_goodbye(message: telebot.types.Message):
     Args:
         message (telebot.types.Message): The message object representing the user's command.
     """
+    user_id = message.chat.id
+    end_conversation(user_id, conversations)
     goodbye_message = "Chao, espero que la última demo haya salido bien 🤗"
     bot.reply_to(message, goodbye_message)
 
@@ -93,7 +101,7 @@ def handle_audio_transcription(message):
     Args:
         message: The user's message object containing audio.
     """
-    audio_filepath =  download_telegram_file(bot, message.audio.file_id)
+    audio_filepath = download_telegram_file(bot, message.audio.file_id)
     transcription = transcribe_audio_with_openai(audio_filepath)
     bot.reply_to(
         message, f"Aquí está tu transcripción:\n{transcription}\n¿Quieres hacer algo más con ella? 🧐")
@@ -132,20 +140,14 @@ def process_openai_step(message: telebot.types.Message):
 
     if message.content_type == "voice":
         audio_filepath = download_telegram_file(bot, message.voice.file_id)
-        msg_text = transcribe_audio_with_openai(audio_filepath)
+        message_text = transcribe_audio_with_openai(audio_filepath)
     else:
-        msg_text = message.text
+        message_text = message.text
     try:
         user_id = message.chat.id
 
-        if user_id not in conversations:
-            chat = ChatOpenAI(model_name="gpt-3.5-turbo",
-                              openai_api_key=OPENAI_API_KEY)
-            conversations[user_id] = ConversationChain(llm=chat)
-        conversation = conversations[user_id]
-
-        reply_message = conversation.run(msg_text)
-        msg = bot.reply_to(message, reply_message)
+        reply_text = conversate(user_id, conversations, message_text, system_prompt=prompts.get(user_id))
+        msg = bot.reply_to(message, reply_text)
 
     except Exception as error:
         bot.reply_to(message, 'Upsi, ha debido de haber algún problema')
