@@ -27,22 +27,23 @@ If you want to learn how to take your Telegram bots to the next level, this is t
 
 1. **Basic Telegram Bot (Telebot Demo)** - This demo serves as an introductory guide to building a basic Telegram bot. It lays the foundation for understanding how to create more advanced bots that leverage OpenAI models.  You will learn how to set up a bot, handle user interactions, and respond to messages using pyTelegramBotAPI Python library.
 
-**Telebot demo features**
-- Helps to show the basic elements of a Telegram bot build with Python.
+    **Telebot demo features**
+    - Helps to show the basic elements of a Telegram bot build with Python.
 
 2. **OpenAI demo** - This demo serves to see how we can build an intelligent model making use of OpenAI's GPT models and Langchain.
 
-**OpenAI demo features**
-- Open AI interaction
+    **OpenAI demo features**
+    - Open AI interaction.
+    - Convenient and user-friendly Telegram bot interface.
 
 3. **Voice demo** - This demo serves to see how we can interact both with OpenAI GPT models and Whisper.
 
-**Voice demo features**
-- Transcribe audio files (up to 25MB) received through Telegram in source language.
-- Support for various audio formats (m4a, mp3, mp4, mpeg, mpga, wav, webm).
-- Accurate transcription results using the Whisper open-source model.
-- Interaction with OpenAI.
-- Convenient and user-friendly Telegram bot interface.
+    **Voice demo features**
+    - Transcribe audio files (up to 25MB) received through Telegram in source language.
+    - Support for various audio formats (m4a, mp3, mp4, mpeg, mpga, wav, webm).
+    - Accurate transcription results using the Whisper open-source model.
+    - Interaction with OpenAI.
+    - Convenient and user-friendly Telegram bot interface.
 
 
 ### Project Structure
