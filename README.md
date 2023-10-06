@@ -1,9 +1,14 @@
 # PyconEs Talk Demo Repository
 
-## Talk Title: Revolucionando Telegram: Creando bots inteligentes con OpenAI
-### Date and Time: 07/10, 12:15–12:50 (Europe/London)
-### Location: Patos (Sala 0.4)
-### Language: Español
+## Repository Overview
+
+This repository contains various demonstration projects related to the PyconEs talk titled "Revolucionando Telegram: Creando bots inteligentes con OpenAI". Each project demonstrates a different aspect of creating intelligent Telegram bots using OpenAI models and Python libraries. The information about the talk is the following:
+
+- **Talk Title:** Revolucionando Telegram: Creando bots inteligentes con OpenAI
+- **Date and Time:** 07/10/23, 12:15–12:50 (Europe/London)
+- **Location:** Tenerife, Spain
+- **Language:** Español
+- **Description:**
 
 Are you tired of reading long messages or listening to endless voice notes on Telegram? Imagine having a bot that could transcribe them quickly with minimal errors and provide you with summaries of the most important points of the conversation. Well, it's possible, and in this talk, we'll show you how from start to finish!
 
@@ -11,16 +16,12 @@ In this session, we will develop a Telegram bot step by step using the latest Op
 
 If you want to learn how to take your Telegram bots to the next level, this is the talk for you. Don't miss the opportunity to be part of this exciting evolution in artificial intelligence and messaging! We look forward to seeing you!
 
----
-
-## Repository Overview
-
-This repository contains various demonstration projects related to the PyconEs talk titled "Revolucionando Telegram: Creando bots inteligentes con OpenAI". Each project demonstrates a different aspect of creating intelligent Telegram bots using OpenAI models and Python libraries.
 
 ## Prerequisites
 
 - Python 3.9
 - Telegram Bot API token (can be obtained from the BotFather)
+- OpenAI API key (can be obtained from [OpenAI](https://platform.openai.com/))
 
 ### Project List
 
@@ -102,6 +103,9 @@ This file is responsible for running the bot.
 3. Once the bot is running, open the Telegram app on your device. 
 4. Search for your bot by its username or the name you provided during the bot creation process. 
 5. Open a chat with the bot and interact with it!
+
+### Deployment
+Coming soon!
 
 ## Contributors
 - [Sara](https://twitter.com/sara_sanluis)
